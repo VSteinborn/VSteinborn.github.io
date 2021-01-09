@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Victor Steinborn / Site Title"
+title                    : "Victor Steinborn / Personal Website"
 title_separator          : "-"
 name                     : &name "Victor Steinborn"
-description              : &description "personal description"
+description              : &description "Personal Website"
 url                      : https://vsteinborn.github.io # the base hostname protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "vsteinborn/vsteinborn.github.io"
@@ -82,11 +82,11 @@ analytics:
 author:
   name             : "Victor Steinborn"
   avatar           : "profile.png"
-  bio              : "Computer Science PhD Student at LMU"
-  location         : "Munich"
-  employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://yourfullgooglescholarurl.com"
+  bio              : "NLP Computer Science PhD Student at LMU"
+  location         : "Munich, Germany"
+  employer         : 
+  pubmed           :  # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  googlescholar    :  # "http://yourfullgooglescholarurl.com"
   email            :
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
@@ -109,7 +109,7 @@ author:
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "#replacethistwitterhandle"
+  twitter          : # "#replacethistwitterhandle"
   vine             :
   weibo            :
   xing             :
