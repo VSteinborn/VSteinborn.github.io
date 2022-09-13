@@ -1,0 +1,20 @@
+{% case include.name %}
+	{% when "Python" %}
+		{% assign tagName="python" %}
+	{% when "PyTorch" %}
+		{% assign tagName="pytorch" %}
+	{% when "Paper" %}
+		{% assign tagName="paper" %}
+	{% when "Huggingface" %}
+		{% assign tagName="huggingface" %}
+	{% when "SciPy" %}
+		{% assign tagName="scipy" %}
+	{% else %}
+		{% assign tagName=include.name %}
+{% endcase %}
+
+<a href="/tagged/{{ tagName | downcase }}">
+    <span class="mdl-chip">
+        <span class="mdl-chip__text">{{ include.name }}</span>
+    </span>
+</a>
