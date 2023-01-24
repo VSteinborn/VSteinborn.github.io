@@ -18,8 +18,12 @@ collections:
   work_experience:
     output: true
     permalink: /work_experience/:path/
+  leadership_experience:
+    output: true
+    permalink: /leadership_experience/:path/
 
 # Build settings
 markdown: kramdown
 permalink: /entries/:year/:month/:day/:title
 highlighter: rouge
+gems: ["jemoji"]
