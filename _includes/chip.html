@@ -9,6 +9,12 @@
 		{% assign tagName="huggingface" %}
 	{% when "SciPy" %}
 		{% assign tagName="scipy" %}
+	{% when "NumPy" %}
+		{% assign tagName="numpy" %}
+	{% when "Scikit-Learn" %}
+		{% assign tagName="scikit-learn" %}
+	{% when "Matlab" %}
+		{% assign tagName="matlab" %}
 	{% else %}
 		{% assign tagName=include.name %}
 {% endcase %}
