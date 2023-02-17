@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Welcome"
+---
+
+<div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-card mdl-shadow--4dp">
+    <div class="mdl-card__title">
+        <div class="card-title"> {{ page.title }} </div>
+    </div>
+    <div class="mdl-grid mdl-card__supporting-text">
+        <div class="padding-top">
+            <p>
+                I am a Natural Language Processing (NLP) PhD student at the LMU in Munich, Germany. My research focuses on analyzing and mitigating gender bias across languages.
+            </p>
+            <p>
+                When working with deep learning models I mainly use of  
+                    {% include chip.html name="Python" %}
+                    {% include chip.html name="PyTorch" %}
+                .
+            </p>
+            <p>
+                I also experiment with other technologies through my own projects, or by participating in other collaborations in my free time. 
+                You can find some of my completed work under the <a href="/projects">Projects</a> tab. 
+                Additionally, if you would like to get in touch, feel free to send me an email under the <a href="/contact">Contact</a> tab, 
+                or via the email address at the bottom of this page.
+            </p>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border center-text">
+        <a href="https://github.com/{{ site.github_username }}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon margin-side-large"><i class="fa fa-github icon-button icon-margin" aria-hidden="true"></i></a>
+    </div>
+</div>
