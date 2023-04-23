@@ -1,0 +1,35 @@
+---
+layout: default
+title: "Welcome"
+---
+
+<div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-card mdl-shadow--4dp">
+    <div class="mdl-card__title">
+        <div class="card-title"> {{ page.title }} </div>
+    </div>
+    <div class="mdl-grid mdl-card__supporting-text">
+        <div class="padding-top">
+            <p>
+                I am a <a href="https://en.wikipedia.org/wiki/Natural_language_processing">Natural Language Processing (NLP)</a> PhD student at the LMU in Munich, Germany 
+                with a background in <a href="https://en.wikipedia.org/wiki/Theoretical_physics">theoretical physics</a>. 
+                My research focuses on analyzing and mitigating gender bias across languages.
+            </p>
+            <p> 
+                    {% include chip.html name="Python" %}
+                is my main programming language of choice.
+                 (The yellow chips are <a href="https://www.thefreedictionary.com/clickable">clickable</a>! :wink:)
+            </p>
+            <p>
+                Through personal <a href="/projects">projects</a> and collaborations, also I actively learn other technologies. 
+            </p>
+            <p>
+                If you would like to get in touch for projects or inquiries, please feel free to send me a message under 
+                the <a href="/contact">Contact</a> tab or via the email address at the bottom of this page.
+            </p>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border center-text">
+        <a href="https://github.com/{{ site.github_username }}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon margin-side-large"><i class="fa fa-github icon-button icon-margin" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/{{ site.linkedin_endurl }}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon margin-side-large"><i class="fa-brands fa-linkedin icon-button icon-margin" aria-hidden="true"></i></a>
+    </div>
+</div>

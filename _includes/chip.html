@@ -1,0 +1,28 @@
+{% case include.name %}
+	{% when "Python" %}
+		{% assign tagName="python" %}
+	{% when "PyTorch" %}
+		{% assign tagName="pytorch" %}
+	{% when "Paper" %}
+		{% assign tagName="paper" %}
+	{% when "Huggingface" %}
+		{% assign tagName="huggingface" %}
+	{% when "SciPy" %}
+		{% assign tagName="scipy" %}
+	{% when "NumPy" %}
+		{% assign tagName="numpy" %}
+	{% when "Scikit-Learn" %}
+		{% assign tagName="scikit-learn" %}
+	{% when "Matlab" %}
+		{% assign tagName="matlab" %}
+	{% when "Physics" %}
+		{% assign tagName="physics" %}
+	{% else %}
+		{% assign tagName=include.name %}
+{% endcase %}
+
+<a href="/tagged/{{ tagName | downcase }}">
+    <span class="mdl-chip">
+        <span class="mdl-chip__text">{{ include.name }}</span>
+    </span>
+</a>
