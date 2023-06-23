@@ -17,6 +17,8 @@
 		{% assign tagName="matlab" %}
 	{% when "Physics" %}
 		{% assign tagName="physics" %}
+	{% when "NLP" %}
+		{% assign tagName="nlp" %}
 	{% else %}
 		{% assign tagName=include.name %}
 {% endcase %}
