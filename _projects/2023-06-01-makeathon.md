@@ -11,4 +11,4 @@ order: 3
 link:
 ---
 
-Developed an explainable multilingual sexism detector to be integrated into web browsers. Our project made it to the finals!
+Developed an explainable multilingual sexism detector to be integrated into web browsers. The project won the responsible AI challenge and made it to the finals.
