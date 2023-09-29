@@ -8,6 +8,7 @@ tags:
 - NLP
 show: true
 order: 3
+image: /images/trophy.png
 link:
 ---
 

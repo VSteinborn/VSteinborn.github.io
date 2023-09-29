@@ -9,9 +9,10 @@ tags:
 - NLP
 show: true
 order: 4
+image: /images/bow.png
 link:
 - Github: https://github.com/VSteinborn/politeness-attacks
 - Paper: https://arxiv.org/abs/2306.09752
 ---
 
-Discovered that politeness may be used to bypass hate speech detection systems using politeness levels in Japanese and Korean.
+Discovered that gender biases associated with politeness levels may be used to bypass hate speech detection systems in Japanese and Korean.

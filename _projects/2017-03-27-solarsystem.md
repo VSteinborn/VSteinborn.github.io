@@ -8,6 +8,7 @@ tags:
 - Physics
 show: true
 order: 1
+image: /images/saturn.png
 link:
 - Github: https://github.com/VSteinborn/Solar-System-Simulation
 ---

@@ -10,6 +10,7 @@ layout: default
         <!--<img class="article-image" src=" images/example-work01.jpg" border="0" alt="">-->
     <!--</div>-->
     <div class="mdl-card__title text-card-top">
+        <img src="{{ post.image }}" alt="" class="img-size">
         <div class="text-card-title">{{ post.title }}</div>
         <div class="subtext clear-card-subtext center-text">{{ post.company }}</div>
         <div class="subtext clear-card-subtext center-text">{{ post.display_date }}</div>
@@ -34,6 +35,10 @@ layout: default
             {% if link.Github %}
                 <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href={{ link.Github }}>
                     <i class="fa fa-github icon-button icon-margin" aria-hidden="true"></i>
+                </a>
+            {% elsif link.Website %}
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href={{ link.Website }}>
+                    <i class="fa-solid fa-globe"></i> 
                 </a>
             {% elsif link.Paper %}
                 <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href={{ link.Paper }}>
