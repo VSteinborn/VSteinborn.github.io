@@ -36,8 +36,9 @@ footer {
 }
 
 .footer-logo {
-  font-family: 'Libre Barcode 39 Text', cursive;
-  font-size: 2rem;
+  /* font-family: 'Libre Barcode 39 Text', cursive; */
+  font-family: 'Lato', sans-serif;
+  /* font-size: 2rem; */
 }
 
 .mdl-mini-footer {
@@ -284,7 +285,7 @@ code {
 }
 
 .footer-font-size_left{
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 @media screen and (max-width:600px){
