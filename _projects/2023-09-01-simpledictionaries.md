@@ -10,7 +10,8 @@ show: true
 order: 5
 image: /images/books.png
 link:
+- Github: https://github.com/VSteinborn/simpledictionaries
 - Website: https://simpledictionaries.onrender.com/
 ---
 
-Built a simple online dictionary with Flask. More languages are planned to be added in the future.
+Built a simple online dictionary to learn Flask. Open-source contributions are welcome!
