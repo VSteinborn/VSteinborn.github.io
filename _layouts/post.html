@@ -3,42 +3,41 @@ layout: default
 ---
 
 <section id="header">
-  <div class="inner">
-    <span class="icon solid major fa-cubes"></span>
-    <h3>
-      <a href="/">Three Step <strong>Data Science</strong> by {{site.name}}</a>
-    </h3>
-    <br />
-    <h1>{{page.title}}</h1>
-    <br />
-    {% if page.link %}
-    <ul class="icons">
-      {% for link in page.link %} {% if link.Github %}
-      <li>
-        <a href="{{ link.Github }}" class="icon brands fa-github"
-          ><span class="label">Github</span></a
-        >
-      </li>
-      {% elsif link.Website %}
-      <li>
-        <a href="{{ link.Website }}" class="icon solid fa-globe"
-          ><span class="label">Website</span></a
-        >
-      </li>
-      {% elsif link.Paper %}
-      <li>
-        <a href="{{ link.Paper }}" class="icon solid fa-file-pdf"
-          ><span class="label">Paper</span></a
-        >
-      </li>
-      {% endif %} {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
+    <div class="inner">
+        <span class="image"
+            ><img src="/images/fruit_pineapple-small.png" alt=""
+        /></span>
+        <h1>{{page.title}}</h1>
+        <h2>{{page.display_date}}</h2>
+        <h3><a href="/">Author: {{site.name}}</a></h3>
+        {% if page.link %}
+        <ul class="icons">
+            {% for link in page.link %} {% if link.Github %}
+            <li>
+                <a href="{{ link.Github }}" class="icon brands fa-github"
+                    ><span class="label">Github</span></a
+                >
+            </li>
+            {% elsif link.Website %}
+            <li>
+                <a href="{{ link.Website }}" class="icon solid fa-globe"
+                    ><span class="label">Website</span></a
+                >
+            </li>
+            {% elsif link.Paper %}
+            <li>
+                <a href="{{ link.Paper }}" class="icon solid fa-file-pdf"
+                    ><span class="label">Paper</span></a
+                >
+            </li>
+            {% endif %} {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 </section>
 
 <section id="five" class="main style1">
-  <div class="container">
-    <section>{{content}}</section>
-  </div>
+    <div class="container">
+        <section>{{content}}</section>
+    </div>
 </section>

@@ -1,5 +1,5 @@
 ---
-# layout: large_card
+layout: post
 title: "Solar System Simulation"
 company: "The University of Edinburgh"
 display_date: "Mar 2017"

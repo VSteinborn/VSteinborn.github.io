@@ -1,5 +1,5 @@
 ---
-# layout: large_card
+layout: post
 title: "Politeness Attacks"
 company: "arXiv"
 display_date: "Jun 2023"
@@ -10,7 +10,7 @@ tags:
 show: true
 order: 3
 image: /images/bow.png
-abstract: "Discovered gender biases associated with politeness levels may be used to bypass hate speech detection systems in Japanese and Korean. Published in ArXiv."
+abstract: "Discovered gender biases associated with politeness levels may be used to bypass hate speech detection systems in Japanese and Korean. Published in arXiv."
 blog: false
 link:
   - Github: https://github.com/VSteinborn/politeness-attacks

@@ -1,5 +1,5 @@
 ---
-# layout: large_card
+layout: post
 title: "Simple Dictionaries"
 company: "Hobby Project"
 display_date: "Sep 2023"

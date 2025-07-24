@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Country-Continent Associations"
 company: "Hobby Project"
 display_date: "Apr 2024"

@@ -1,5 +1,5 @@
 ---
-# layout: large_card
+layout: post
 title: "Docker Jekyll Dev. Environment"
 company: "Hobby Project"
 display_date: "Jul 2024"
