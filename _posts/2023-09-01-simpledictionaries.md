@@ -7,7 +7,7 @@ tags:
   - Python
   - Flask
 show: true
-order: 4
+order: 5
 image: /images/books.png
 abstract: "Built a simple and user-friendly open-source online dictionary in Flask."
 blog: false

@@ -7,7 +7,7 @@ tags:
   - JavaScript
   - Python
 show: false
-order: 6
+order: 7
 image: /images/scissors.png
 abstract: "Programmed a rock paper scissors game based on psychology research in JavaScript."
 blog: true

@@ -6,7 +6,7 @@ display_date: "Dec 2024"
 tags:
   - Blog
 show: true
-order: 7
+order: 10
 image: /images/daiki_square.jpg
 abstract: "Article on exploring responsible AI research topics and top papers"
 blog: true

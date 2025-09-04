@@ -6,7 +6,7 @@ display_date: "Mar 2025"
 tags:
   - Rust
 show: true
-order: 9
+order: 11
 image: /images/sphere.jpg
 abstract: "Quickly find how stress propagates in an Ansys simulation by examining different stress boundaries. Programmed in Rust."
 blog: false

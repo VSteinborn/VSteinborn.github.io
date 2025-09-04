@@ -8,7 +8,7 @@ tags:
   - Python
   - NLP
 show: true
-order: 3
+order: 4
 image: /images/bow.png
 abstract: "Discovered gender biases associated with politeness levels may be used to bypass hate speech detection systems in Japanese and Korean. Published in arXiv."
 blog: false

@@ -6,7 +6,7 @@ display_date: "Dec 2024"
 tags:
   - Go
 show: true
-order: 8
+order: 9
 image: /images/boids.gif
 abstract: "Simple simulation of the Boids flocking algorithm. Programmed in Go."
 blog: false

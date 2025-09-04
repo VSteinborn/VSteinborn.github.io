@@ -6,7 +6,7 @@ display_date: "Sep 2023"
 tags:
   - JavaScript
 show: true
-order: 5
+order: 6
 image: /images/scissors.png
 abstract: "Programmed a rock paper scissors game based on psychology research in JavaScript."
 blog: false

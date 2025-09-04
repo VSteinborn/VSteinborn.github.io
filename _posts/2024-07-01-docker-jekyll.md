@@ -6,7 +6,7 @@ display_date: "Jul 2024"
 tags:
   - Docker
 show: true
-order: 6
+order: 8
 image: /images/container_kontenasen.png
 abstract: "Developed a Docker image that may be used to start a local stable Jekyll development environment from the command line."
 blog: false
