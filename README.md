@@ -4,7 +4,7 @@ Personal Site of Victor Steinborn.
 
 # Content
 
-© Victor Steinborn 2022 - 2024. All rights reserved.
+© Victor Steinborn 2022 - 2025. All rights reserved.
 
 # Design
 
