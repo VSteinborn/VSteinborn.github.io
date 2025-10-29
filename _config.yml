@@ -3,7 +3,6 @@ name: Victor Steinborn
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: VSteinborn
-linkedin_endurl: dr-victor-s-601455255
 start_year: "2022"
 
 collections:
