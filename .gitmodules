@@ -1,0 +1,3 @@
+[submodule "themes/apollo-theme"]
+	path = themes/apollo-theme
+	url = git@github.com:VSteinborn/apollo-theme.git

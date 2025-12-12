@@ -1,13 +1,2 @@
-# Jekyll
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-
 # MacOS
 .DS_Store
-
-# Docker (local dev)
-docker-entrypoint.sh
-compose.yaml
-/Docker-Jekyll
