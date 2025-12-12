@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Victor Steinborn</title>
+    <subtitle>Project site of Dr. Victor Steinborn.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://vsteinborn.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://vsteinborn.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-10-01T00:00:00+00:00</updated>
+    <id>https://vsteinborn.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>C-Breakout</title>
+        <published>2025-10-01T00:00:00+00:00</published>
+        <updated>2025-10-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/cbreakout/"/>
+        <id>https://vsteinborn.github.io/projects/cbreakout/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/cbreakout/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Introduction to Responsible AI</title>
+        <published>2025-09-30T00:00:00+00:00</published>
+        <updated>2025-09-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/raitalk/"/>
+        <id>https://vsteinborn.github.io/professional/raitalk/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/raitalk/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tiny-Mnist-Denoiser</title>
+        <published>2025-06-01T00:00:00+00:00</published>
+        <updated>2025-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/denoiser/"/>
+        <id>https://vsteinborn.github.io/projects/denoiser/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/denoiser/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Stress Propagation Analysis</title>
+        <published>2025-03-01T00:00:00+00:00</published>
+        <updated>2025-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/ansys-limits/"/>
+        <id>https://vsteinborn.github.io/projects/ansys-limits/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/ansys-limits/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Top Responsible AI Papers @ Daiki</title>
+        <published>2024-12-01T00:00:00+00:00</published>
+        <updated>2024-12-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/daiki-article/"/>
+        <id>https://vsteinborn.github.io/professional/daiki-article/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/daiki-article/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Boids Simulation</title>
+        <published>2024-12-01T00:00:00+00:00</published>
+        <updated>2024-12-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/boid-simulation/"/>
+        <id>https://vsteinborn.github.io/projects/boid-simulation/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/boid-simulation/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Docker Jekyll Dev. Environment</title>
+        <published>2024-07-01T00:00:00+00:00</published>
+        <updated>2024-07-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/docker-jekyll/"/>
+        <id>https://vsteinborn.github.io/projects/docker-jekyll/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/docker-jekyll/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Rock Paper Scissors</title>
+        <published>2023-11-18T00:00:00+00:00</published>
+        <updated>2023-11-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/rock-paper-scissors/"/>
+        <id>https://vsteinborn.github.io/projects/rock-paper-scissors/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/rock-paper-scissors/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Simple Dictionaries</title>
+        <published>2023-09-01T00:00:00+00:00</published>
+        <updated>2023-09-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/simpledictionaries/"/>
+        <id>https://vsteinborn.github.io/projects/simpledictionaries/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/simpledictionaries/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Politeness Stereotypes and Attack Vectors: Gender Stereotypes in Japanese and Korean Language Models</title>
+        <published>2023-06-01T00:00:00+00:00</published>
+        <updated>2023-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/politeness-attacks/"/>
+        <id>https://vsteinborn.github.io/professional/politeness-attacks/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/politeness-attacks/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Open Source Contribution - Added Japanese and Korean Support to Python Library</title>
+        <published>2023-02-09T00:00:00+00:00</published>
+        <updated>2023-02-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/foss-jpsupport/"/>
+        <id>https://vsteinborn.github.io/projects/foss-jpsupport/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/foss-jpsupport/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>An Information-Theoretic Approach and Dataset for Probing Gender Stereotypes in Multilingual Masked Language Models</title>
+        <published>2022-06-01T00:00:00+00:00</published>
+        <updated>2022-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/sjsd/"/>
+        <id>https://vsteinborn.github.io/professional/sjsd/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/sjsd/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Jojo GPT2 Bot</title>
+        <published>2022-03-01T00:00:00+00:00</published>
+        <updated>2022-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/jojo-gpt2/"/>
+        <id>https://vsteinborn.github.io/projects/jojo-gpt2/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/jojo-gpt2/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Solar System Simulation</title>
+        <published>2017-03-27T00:00:00+00:00</published>
+        <updated>2017-03-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/solarsystem/"/>
+        <id>https://vsteinborn.github.io/projects/solarsystem/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/solarsystem/"></content>
+        
+    </entry>
+</feed>
