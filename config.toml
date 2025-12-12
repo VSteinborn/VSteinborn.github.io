@@ -1,0 +1,60 @@
+# The URL the site will be built for
+base_url = "https://vsteinborn.github.io"
+title = "Victor Steinborn"
+description = "Project site of Dr. Victor Steinborn."
+generate_feeds = true
+minify_html = true
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "apollo-theme"
+taxonomies = [{ name = "tags" }]
+
+[search]
+include_title = true
+include_description = true
+include_path = true
+include_content = true
+index_format = "elasticlunr_json"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "css"
+highlight_themes_css = [
+  { theme = "ayu-dark", filename = "syntax-theme-dark.css" },
+  { theme = "ayu-light", filename = "syntax-theme-light.css" },
+]
+
+[extra]
+# Put all your custom variables here
+toc=true
+theme = "toggle"
+socials = [
+	{ name = "github", url = "https://github.com/vsteinborn/", icon = "github" },
+	{ name = "linkedin", url = "https://www.linkedin.com/in/dr-victor-s-601455255/", icon = "linkedin" },
+	{ name = "email", url = "mailto:[first two letters of my first name].[my last name][at]gmail.com", icon = "email" },
+	{ name = "rss", url = "/atom.xml", icon = "rss" },
+]
+menu = [
+    { name = "/posts", url = "/posts", weight = 1 },
+    { name = "/projects", url = "/projects", weight = 2 },
+    { name = "/professional", url = "/professional", weight = 3 },
+    # { name = "/tags", url = "/tags", weight = 4 },
+]
+
+mathjax = true
+mathjax_dollar_inline_enable = true
+fancy_code = true
+dynamic_note = true
+repo_view = true
+repo_url = "https://github.com/vsteinborn/vsteinborn.github.io/tree/main/content/"
+
+[extra.taxonomies]
+sort_by = "page_count"         # e.g. name, page_count
+reverse = true
