@@ -10,3 +10,4 @@ Remember: For Zola to link between posts, use the `@` symbol at the beginning of
 
 # Articles
 - [index](_index.md)
+- [2025-12-15-personal-wiki](2025-12-15-personal-wiki.md)
