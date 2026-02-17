@@ -1,6 +1,7 @@
 +++
 title="Your Personal Library - How to Use Multiple Wikis With VimWiki in NeoVim"
 date=2025-12-15
+authors = ["Victor Steinborn"]
 
 [taxonomies] 
 tags=["HowTo"]
