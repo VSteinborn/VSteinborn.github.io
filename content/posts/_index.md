@@ -8,3 +8,5 @@ insert_anchor_links = "heading"
 comment = true
 +++
 # [List Posts by Tags](/tags)
+
+**No guides come with any form of warranty**
