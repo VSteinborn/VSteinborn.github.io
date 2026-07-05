@@ -120,4 +120,5 @@ you decide what setup is best for your use case.
     year = {2026},
     url = {https://vsteinborn.github.io/posts/personal-server/}
 }
-`
+```
+
