@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Victor Steinborn</title>
+    <subtitle>Project site of Dr. Victor Steinborn.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://vsteinborn.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://vsteinborn.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-07-05T00:00:00+00:00</updated>
+    <id>https://vsteinborn.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>How to Setup Your Personal Home Server - For Scientists and Engineers</title>
+        <published>2026-07-05T00:00:00+00:00</published>
+        <updated>2026-07-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Victor Steinborn
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/posts/personal-server/"/>
+        <id>https://vsteinborn.github.io/posts/personal-server/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/posts/personal-server/">&lt;blockquote&gt;
+&lt;p&gt;&quot;Those who know nothing of foreign languages know nothing of their own.&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;-- &lt;strong&gt;&lt;em&gt;Johann Wolfgang von Goethe&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;getting-computers-to-communicate-simply&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#getting-computers-to-communicate-simply&quot; aria-label=&quot;Anchor link for: getting-computers-to-communicate-simply&quot;&gt;Getting Computers to Communicate Simply&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;I was recently interested in setting up a home server so that I can
+&lt;a href=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;posts&#x2F;ramalama&#x2F;&quot;&gt;host my own large language models using Ramalama&lt;&#x2F;a&gt;
+on an older computer with a dedicated graphics card.&lt;&#x2F;p&gt;
+&lt;p&gt;However, when I started learning more about what it takes to set up such a server,
+I quickly realized a lot of the solutions out there relied on using 3rd party apps or
+software.&lt;&#x2F;p&gt;
+&lt;p&gt;I personally prefer to keep my setup as simple as possible using system defaults
+and pre-installed software. Ultimately I would like the setup to feel like a computing cluster
+that can be found at a university for scientific and engineering applications with
+some websites that people can access from the browser (like one website for chatting with a local LLM).&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally, I also like to apply scientific experimental
+principles to my setup. Specifically, the most important principles for me are
+&lt;strong&gt;reproducibility&lt;&#x2F;strong&gt; and &lt;strong&gt;simplicity&lt;&#x2F;strong&gt;. When running the server, I want my setup to be
+easy to replicate on another system. Additionally, I don&#x27;t want to be dependent
+on an excessive amount of 3rd party software as that also impacts reproducibility
+and simplicity when the software I depend on requires an update that introduces
+breaking changes.&lt;&#x2F;p&gt;
+&lt;p&gt;This article does not go into great detail on how to get everything running, but instead
+is intended to provide an outline with links to free resources that provide step-by-step
+instructions.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;step-1-get-a-server-running-in-your-home-network&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-1-get-a-server-running-in-your-home-network&quot; aria-label=&quot;Anchor link for: step-1-get-a-server-running-in-your-home-network&quot;&gt;Step 1 - Get a Server Running in Your Home Network&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;This was one of the steps that conceptually confused me the most when first starting out.
+Many of the guides on getting home servers running usually focus on one specific piece
+of hardware (e.g. a Rasberry Pi) and getting one specific piece of software running on it
+(e.g. Nextcloud).&lt;&#x2F;p&gt;
+&lt;p&gt;What confused me at the time was the guides made it seem like a home &#x27;server&#x27; is a very specific setup,
+however a server is quite a general concept. In short, paraphrasing &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Server_(computing)&quot;&gt;Wikipedia&lt;&#x2F;a&gt;,
+&lt;em&gt;a server is simply a computer that can provide data, resources or services to other computers
+in a network&lt;&#x2F;em&gt;. This means almost &lt;em&gt;any&lt;&#x2F;em&gt; computer can potentially be configured to act as a server.&lt;&#x2F;p&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;This may be obvious, however it is important to be aware
+that a server is ultimately just another computer for our purposes.&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;For our setup, taking inspiration from computing clusters that may be found at universities, I
+ultimately decided to setup my server using &lt;a href=&quot;https:&#x2F;&#x2F;fedoraproject.org&#x2F;server&#x2F;&quot;&gt;Fedora Server&lt;&#x2F;a&gt; after
+looking through what options exist from the popular Linux distribution providers.
+You can also use other operating systems or solutions, however for my use case it was simplest to
+go with Fedora Server.&lt;&#x2F;p&gt;
+&lt;p&gt;To set up Fedora Server on my system I followed this excellent &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=kOEcTGZWiUQ&quot;&gt;video guide&lt;&#x2F;a&gt; from TechHut. This guide also explains how to get some simple services running
+using &lt;a href=&quot;https:&#x2F;&#x2F;podman.io&#x2F;&quot;&gt;Podman&lt;&#x2F;a&gt; (an alternative software to Docker), which comes pre-installed with Fedora Server.&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally as a side note, using Ramalama you can easily create Podman&#x2F;Docker Compose files for serving LLMs on your server via the &lt;code&gt;--generate=compose&lt;&#x2F;code&gt; flag.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, you can create a compose file for running smollm using the following command
+from the Ramalama documentation:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ramalama&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; serve&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;name&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;my-smollm-server&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;port&lt;&#x2F;span&gt; 1234&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;generate&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;compose smollm:135m&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;step-2-setting-up-an-nginx-reverse-proxy&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-2-setting-up-an-nginx-reverse-proxy&quot; aria-label=&quot;Anchor link for: step-2-setting-up-an-nginx-reverse-proxy&quot;&gt;Step 2 - Setting up an NGINX Reverse Proxy&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;At this point you might already be happy with your server. You would need to open up a
+port in your Server&#x27;s firewall for each service you want to make available in your home network.
+To avoid opening up more ports you can make use of an NGINX reverse proxy that would route traffic
+from a single port to different services.&lt;&#x2F;p&gt;
+&lt;p&gt;For this I benefited from watching Cameron McKenzie&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=ZmH1L1QeNHk&quot;&gt;video guide&lt;&#x2F;a&gt; on how to setup an NGINX reverse proxy. Many guides I have seen on this topic
+make use of 3rd party software that manage the reverse proxy for you, however this guide makes use of
+docker and uses the base NGINX image. To follow this guide with Podman you would simply need to
+replace &lt;code&gt;docker&lt;&#x2F;code&gt; with &lt;code&gt;podman&lt;&#x2F;code&gt; in each command.&lt;&#x2F;p&gt;
+&lt;p&gt;One thing I would like to note is that I have seen the term &#x27;reverse proxy&#x27; used in some guides to
+describe a setup where you want computers outside of your home network (i.e. computers not directly
+connected to your router) to access your server. The video does &lt;em&gt;not&lt;&#x2F;em&gt; setup your server for that
+type of configuration. Here we want the reverse proxy to route traffic coming &lt;em&gt;from&lt;&#x2F;em&gt; within the
+home network &lt;em&gt;to&lt;&#x2F;em&gt; a specific service running on our server (such as a site hosting an LLM). The
+service would not be accessible outside of our home network.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;step-3-setup-self-signed-ssl-certificates&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-3-setup-self-signed-ssl-certificates&quot; aria-label=&quot;Anchor link for: step-3-setup-self-signed-ssl-certificates&quot;&gt;Step 3 - Setup Self-Signed SSL Certificates&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;At this point you have a server that has services accessible through a single port, however you might
+have noticed that if you try to access these services you have a warning in your browser that the
+connection is not secure. If you ignore the warning you can access your service.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the only issue with this approach is that anyone&#x2F; any device in your home network can read
+anything you send over this connection because you are sending data over the HTTP protocol. To fix
+this and use the more secure HTTPS protocol (the S stands for &#x27;secure&#x27;) you can use self-signed
+SSL certificates. There are also other ways to tackle this issue, however this worked for my use case
+and it did not require me to install extra software or pay for a domain name.&lt;&#x2F;p&gt;
+&lt;p&gt;For learning about the theory behind SSL certificates and for a guide on getting HTTPS setup between devices in the home network, I greatly benefited from Christian Lempa&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=VH4gXcvkmOY&quot;&gt;video guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;closing-thoughts&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#closing-thoughts&quot; aria-label=&quot;Anchor link for: closing-thoughts&quot;&gt;Closing Thoughts&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Setting up my own home server was a rewarding experience for getting practical experience in computer
+networking and deploying services. Additionally, I found setting up a home server was a great way
+to take steps to save money by opting for self-hosted services (as opposed to cloud solutions) and
+taking control of personal data.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many ways you can setup your server so I hope that you benefited from this guide by helping
+you decide what setup is best for your use case.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bibtex&quot; class=&quot;language-bibtex z-code&quot;&gt;&lt;code class=&quot;language-bibtex&quot; data-lang=&quot;bibtex&quot;&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-keyword z-other z-entry-type z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-keyword z-bibtex&quot;&gt;@&lt;&#x2F;span&gt;misc&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-entry-key z-bibtex&quot;&gt;2026-vsteinborn-serverhowto&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;author&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;Victor Steinborn&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;title&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;How to Setup Your Personal Home Server - For Scientists and Engineers&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;year&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;2026&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;url&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;posts&#x2F;personal-server&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>How to Use Ramalama to run Containerized LLMs Privately in Zed</title>
+        <published>2026-02-17T00:00:00+00:00</published>
+        <updated>2026-02-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Victor Steinborn
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/posts/ramalama/"/>
+        <id>https://vsteinborn.github.io/posts/ramalama/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/posts/ramalama/">&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&quot;Kizuri chajiuza, kibaya chajitembeza.&quot;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;&quot;Good things sell themselves, bad things need advertising&quot;&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;-- &lt;strong&gt;&lt;em&gt;Swahili Proverb&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;motivation&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#motivation&quot; aria-label=&quot;Anchor link for: motivation&quot;&gt;Motivation&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;It seems like not a day can go by where we don&#x27;t hear about AI on the internet lately.&lt;&#x2F;p&gt;
+&lt;p&gt;Most of the discourse regarding AI focuses on specific tools from providers that you
+can access by visiting their website.&lt;&#x2F;p&gt;
+&lt;p&gt;However, these tools are often not free or require you sending your text conversation
+or other data to the provider to make use of the tool.
+This last point is especially problematic if you work in a setting where personal data or
+intellectual property cannot (or should not) be transferred out of an organization.&lt;&#x2F;p&gt;
+&lt;p&gt;A solution to this dilemma is to run the AI model on your own computer using open-source models.
+There are multiple ways of doing this, in this post I will show how
+you can use &lt;a href=&quot;https:&#x2F;&#x2F;ramalama.ai&#x2F;&quot;&gt;Ramalama&lt;&#x2F;a&gt; to run models in OCI containers.&lt;&#x2F;p&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;OCI containers are virtualised operating systems that work
+in a manner that is standardized between devices.&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;The main motivation for using OCI containers is that you don&#x27;t have to worry about
+changing configurations if you decide to move to another device or cloud provider,
+this keeps the setup clean and reproducible.&lt;&#x2F;p&gt;
+&lt;p&gt;This post is intended to outline some lessons learned in getting Ramalama running
+so that you can avoid the same pitfalls I had.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;advantages&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#advantages&quot; aria-label=&quot;Anchor link for: advantages&quot;&gt;Advantages&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ramalama and open models are free and open-source&lt;&#x2F;li&gt;
+&lt;li&gt;You keep your data local and private&lt;&#x2F;li&gt;
+&lt;li&gt;Open-source models and software can be modified and audited&lt;&#x2F;li&gt;
+&lt;li&gt;The models are containerized for portability and security&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;things-to-keep-in-mind&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#things-to-keep-in-mind&quot; aria-label=&quot;Anchor link for: things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Some models are quite large and require a lot of memory&lt;&#x2F;li&gt;
+&lt;li&gt;Some models (especially large models) can consume a lot of electricity to run&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;If the model requires more memory than your system
+is able to provide, you unfortunately can&#x27;t run the model without changing your hardware
+or how the model is loaded into memory.&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;h1 id=&quot;notes-on-setup&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#notes-on-setup&quot; aria-label=&quot;Anchor link for: notes-on-setup&quot;&gt;Notes on Setup&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;I will specifically focus on running Ramalama (version 0.16.0) for text completion
+in the &lt;a href=&quot;https:&#x2F;&#x2F;zed.dev&#x2F;&quot;&gt;Zed IDE&lt;&#x2F;a&gt; (version 0.223.3), however you can use Ramalama
+for other applications as well.&lt;&#x2F;p&gt;
+&lt;p&gt;For this setup I am using a computer running &lt;a href=&quot;https:&#x2F;&#x2F;fedoraproject.org&#x2F;&quot;&gt;Fedora Linux&lt;&#x2F;a&gt;
+with the default &lt;code&gt;dnf&lt;&#x2F;code&gt; package manager, an NVIDIA graphics card and with Podman installed.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This post will not be discussing how to setup agentic features or tools.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;setup&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#setup&quot; aria-label=&quot;Anchor link for: setup&quot;&gt;Setup&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;install-ramalama&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#install-ramalama&quot; aria-label=&quot;Anchor link for: install-ramalama&quot;&gt;Install Ramalama&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;I started off with installing Ramalama using the information provided in the official
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;containers&#x2F;ramalama&quot;&gt;GitHub Repository&lt;&#x2F;a&gt;. To do this I ran:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; dnf install ramalama&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-nvidia-container-toolkit&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#install-nvidia-container-toolkit&quot; aria-label=&quot;Anchor link for: install-nvidia-container-toolkit&quot;&gt;Install NVIDIA Container Toolkit&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Subsequently, because I am using an NVIDIA graphics card, I had to install the &lt;code&gt;nvidia-container-toolkit&lt;&#x2F;code&gt;
+to enable CUDA support in containers.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where I ran into my first issue, because no &lt;code&gt;nvidia-container-toolkit&lt;&#x2F;code&gt; package exists in the
+default Fedora repositories.&lt;&#x2F;p&gt;
+&lt;p&gt;To overcome this, I searched the &lt;code&gt;dnf&lt;&#x2F;code&gt; repositories via &lt;code&gt;dnf search nvidia-container-toolkit&lt;&#x2F;code&gt; and found
+a package named &lt;code&gt;golang-github-nvidia-container-toolkit&lt;&#x2F;code&gt; from the Fedora Project, which pointed to the
+official NVIDIA GitHub repository for the advertised &lt;code&gt;nvidia-container-toolkit&lt;&#x2F;code&gt; package.&lt;&#x2F;p&gt;
+&lt;p&gt;I decided that this is a sufficiently trustworthy source for my use case, however you can also
+install the package from the NVIDIA repository directly, but this will require you adding
+a new repository to &lt;code&gt;dnf&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In my case I ran:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; dnf install golang-github-nvidia-container-toolkit&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;generate-cdi-specification-file&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#generate-cdi-specification-file&quot; aria-label=&quot;Anchor link for: generate-cdi-specification-file&quot;&gt;Generate CDI Specification File&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;With the NVIDIA Container Toolkit we have to generate a CDI (Container Device Interface) Specification File
+according to the Ramalama installation guide. To do this, simply run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; nvidia-ctk cdi generate&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;output&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;&#x2F;etc&#x2F;cdi&#x2F;nvidia.yaml&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can check if everything worked correctly by running:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;nvidia-ctk&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cdi list&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should return a list of CDI devices.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;According to the Ramalama documentation, the CDI Specification
+file needs to be updated each time the driver is updated or if the GPU configuration changes,
+so be aware of breaking changes.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;serving-a-model-with-ramalama&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#serving-a-model-with-ramalama&quot; aria-label=&quot;Anchor link for: serving-a-model-with-ramalama&quot;&gt;Serving a Model With Ramalama&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Once Ramalama is installed and configured, pulling and serving models is relatively simple.
+For example, to pull the open mistral 7B model, simply run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ramalama&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; pull mistral&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will pull the default mistral model specified in the Ramalama configurations.
+You can however pull specific models from a wide range of model registries,
+including Huggingface and Ollama. To serve the pulled model, simply run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ramalama&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;runtime&lt;&#x2F;span&gt; llama.cpp serve&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;p&lt;&#x2F;span&gt; 8080 mistral&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This runs the mistral model using the &lt;code&gt;llama.cpp&lt;&#x2F;code&gt; inference runtime
+(Ramalama also supports &lt;code&gt;vllm&lt;&#x2F;code&gt;) and makes the model accessible locally on port 8080.
+For this article we use &lt;code&gt;llama.cpp&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Before moving on, make note of a line that reads something along the lines of:
+&lt;code&gt;main: server is listening on http:&#x2F;&#x2F;0.0.0.0:8080&lt;&#x2F;code&gt;, for example, when serving the model.
+Make note of the &lt;code&gt;http&lt;&#x2F;code&gt; address, this is where the model is accessible locally.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;making-the-model-accessible-in-zed&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#making-the-model-accessible-in-zed&quot; aria-label=&quot;Anchor link for: making-the-model-accessible-in-zed&quot;&gt;Making the Model Accessible in Zed&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;In the Zed IDE, open the &lt;code&gt;settings.json&lt;&#x2F;code&gt; file by opening the top ribbon menu in the top
+left window, click on &lt;code&gt;Zed&lt;&#x2F;code&gt;-&amp;gt;&lt;code&gt;Open Settings&lt;&#x2F;code&gt; and then &lt;code&gt;Edit in settings.json&lt;&#x2F;code&gt;.
+In &lt;code&gt;settings.json&lt;&#x2F;code&gt; add the following &lt;code&gt;&quot;language_models&quot;&lt;&#x2F;code&gt; key-value pair:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json z-code&quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;telemetry&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;P&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;c&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;f&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;auto_update&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;O&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;p&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;c&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;f&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;language_models&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;   &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;openai_compatible&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;     &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Ramalama&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;C&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;       &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;api_url&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;http:&#x2F;&#x2F;0.0.0.0:8080&#x2F;v1&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;w&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;y&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;v&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;y&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;       &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;available_models&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-sequence z-begin z-json&quot;&gt;[&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;         &lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-begin z-json&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;           &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;name&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Mistral-7B-Instruct-v0.3&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;C&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;           &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;display_name&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Mistral-7B-Instruct-v0.3&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;C&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;           &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-json&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;max_tokens&lt;span class=&quot;z-punctuation z-definition z-string z-end z-json&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-key-value z-json&quot;&gt;:&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-json&quot;&gt;32768&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;I&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;w&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;b&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;x&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;p&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;l&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;a&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;d&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;w&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;o&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;g&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;t&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;h&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;s&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;u&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;b&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;e&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal z-expected-mapping-key z-json&quot;&gt;r&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;         &lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-sequence z-json&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-sequence z-json&quot;&gt;       &lt;span class=&quot;z-punctuation z-section z-sequence z-end z-json&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;     &lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;   &lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt; &lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-mapping z-pair z-json&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-json&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-json&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-mapping z-end z-json&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&quot;api_url&quot;&lt;&#x2F;code&gt;: make sure that this is the same as what is printed to the
+terminal after serving the model, with a final &lt;code&gt;&#x2F;v1&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;The final &lt;code&gt;&#x2F;v1&lt;&#x2F;code&gt; endpoint may be different if you decided to use
+&lt;code&gt;vllm&lt;&#x2F;code&gt; instead of &lt;code&gt;llama.cpp&lt;&#x2F;code&gt;. Make sure to check the documentation of the
+service that you decide to use.&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&quot;max_tokens&quot;&lt;&#x2F;code&gt;: To get the &lt;code&gt;&quot;max_tokens&quot;&lt;&#x2F;code&gt; run the &lt;code&gt;ramalama inspect&lt;&#x2F;code&gt; command and look for a
+line with the word &lt;code&gt;context_length&lt;&#x2F;code&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ramalama&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; inspect&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;all&lt;&#x2F;span&gt; mistral&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-pipe z-shell&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;grep&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; context_length&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This command will tell you the maximum amount of tokens your model (in this case mistral)
+can accept as context.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;api-key&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#api-key&quot; aria-label=&quot;Anchor link for: api-key&quot;&gt;API Key&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;At this point, if you try to generate text with Zed, the editor may complain that
+no API key is configured. If this happens, go to the model selection tab (next to
+the send chat button in the agent panel), select &lt;code&gt;Configure&lt;&#x2F;code&gt; and type &lt;code&gt;none&lt;&#x2F;code&gt; for
+the Ramalama API key and save.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;closing-thoughts&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#closing-thoughts&quot; aria-label=&quot;Anchor link for: closing-thoughts&quot;&gt;Closing Thoughts&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;If you did all this, Zed should now be able to generate text in-line or using the
+chat window via Ramalama.
+You can also chat with GPU support, which may even be faster than
+using an external paid service. In addition, you get to keep control of your data.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope you enjoy using Ramalama and that this tutorial was helpful to you!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bibtex&quot; class=&quot;language-bibtex z-code&quot;&gt;&lt;code class=&quot;language-bibtex&quot; data-lang=&quot;bibtex&quot;&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-keyword z-other z-entry-type z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-keyword z-bibtex&quot;&gt;@&lt;&#x2F;span&gt;misc&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-entry-key z-bibtex&quot;&gt;2026-vsteinborn-ramalama&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;author&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;Victor Steinborn&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;title&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;How to Use Ramalama to run Containerized LLMs Privately in Zed&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;year&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;2026&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;url&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;posts&#x2F;ramalama&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Your Personal Library - How to Use Multiple Wikis With VimWiki in NeoVim</title>
+        <published>2025-12-15T00:00:00+00:00</published>
+        <updated>2025-12-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Victor Steinborn
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/posts/personal-wiki/"/>
+        <id>https://vsteinborn.github.io/posts/personal-wiki/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/posts/personal-wiki/">&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Wisdom is not a product of schooling but of the lifelong attempt to acquire it.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;-- &lt;strong&gt;&lt;em&gt;Albert Einstein&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;motivation&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#motivation&quot; aria-label=&quot;Anchor link for: motivation&quot;&gt;Motivation&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Every now and then in life we learn some piece of information we would like to remember.
+For example, a friend might mention a fun website they recently learned about or we
+came across an interesting paper we would like to remember for a thesis.
+It could be great to have some sort of &lt;strong&gt;wiki&lt;&#x2F;strong&gt; that keeps track of this useful information for us
+so it is easier to find later.
+This is exactly what &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vimwiki&#x2F;vimwiki&quot;&gt;VimWiki&lt;&#x2F;a&gt; attempts to do!&lt;&#x2F;p&gt;
+&lt;p&gt;With VimWiki you can make your own wiki on topics that interest you.&lt;&#x2F;p&gt;
+&lt;p&gt;Even more importantly:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;It&#x27;s free&lt;&#x2F;li&gt;
+&lt;li&gt;There is no vendor lock-in (everything can be a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Markdown&quot;&gt;markdown&lt;&#x2F;a&gt; file, which is a plain-text file)&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s open source (people can audit the code)&lt;&#x2F;li&gt;
+&lt;li&gt;Your data remains local (important for data privacy)&lt;&#x2F;li&gt;
+&lt;li&gt;You can interact with your wiki using &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Vim_(text_editor)&quot;&gt;vim&lt;&#x2F;a&gt; controls (fast, but requires basic vim knowledge)&lt;&#x2F;li&gt;
+&lt;li&gt;You can have multiple wikis in different files on your computer and have access between them&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The last point is exciting because you can have a personal private wiki you keep on
+your personal computer, and a public &#x27;wiki&#x27; about topics that interest you, such as a blog or
+a way for editing documentation for work.&lt;&#x2F;p&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;This blog was written with VimWiki!&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;h1 id=&quot;prerequisites&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;&gt;Prerequisites&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to have &lt;a href=&quot;https:&#x2F;&#x2F;neovim.io&#x2F;&quot;&gt;NeoVim&lt;&#x2F;a&gt; installed on your computer&lt;&#x2F;li&gt;
+&lt;li&gt;Some basic Vim&#x2F;NeoVim knowledge is required. It is recommended to run &lt;code&gt;:Tutor&amp;lt;enter&amp;gt;&lt;&#x2F;code&gt; after first installing NeoVim and following the tutorial&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;installing&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installing&quot; aria-label=&quot;Anchor link for: installing&quot;&gt;Installing&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Note for Vim users: The VimWiki project page has a Vim installation guide.&lt;&#x2F;p&gt;
+&lt;p&gt;I recommend first installing &lt;a href=&quot;https:&#x2F;&#x2F;lazy.folke.io&#x2F;installation&quot;&gt;lazy.nvim&lt;&#x2F;a&gt;, which is a plugin manager for NeoVim.&lt;&#x2F;p&gt;
+&lt;p&gt;Next, to install the VimWiki plugin I recommend following &lt;a href=&quot;https:&#x2F;&#x2F;namoku.dev&#x2F;blog&#x2F;how-do-i-setup-lazyvim&#x2F;&quot;&gt;this guide&lt;&#x2F;a&gt;.
+This is the best guide I could find and what ultimately helped me install VimWiki.&lt;&#x2F;p&gt;
+&lt;p&gt;At the end, your &lt;code&gt;~&#x2F;.config&#x2F;nvim&#x2F;&lt;&#x2F;code&gt; directory should look like this:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── init.lua 
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── lazy-lock.json &amp;lt;- This file is created when lazy.nvim gets loaded
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── lua
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── config
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── lazy.lua
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── plugins
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        └── vimwiki.lua
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;short-introduction-to-vimwiki&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#short-introduction-to-vimwiki&quot; aria-label=&quot;Anchor link for: short-introduction-to-vimwiki&quot;&gt;Short Introduction to VimWiki&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;You can start VimWiki within Vim or NeoVim by pressing &lt;code&gt;&amp;lt;leader&amp;gt;ww&lt;&#x2F;code&gt;, where &lt;code&gt;&amp;lt;leader&amp;gt;&lt;&#x2F;code&gt; is a key you can
+set in the configuration files (via &lt;code&gt;vim.g.mapleader&lt;&#x2F;code&gt; in NeoVim).
+I believe after going through the NeoVim &lt;code&gt;:Tutor&lt;&#x2F;code&gt; tutorial &lt;code&gt;vim.g.mapleader=&#x27; &#x27;&lt;&#x2F;code&gt;, so by default the &lt;code&gt;&amp;lt;leader&amp;gt;&lt;&#x2F;code&gt; key is the space bar in NeoVim.&lt;&#x2F;p&gt;
+&lt;p&gt;Once in VimWiki you can link pages by writing &lt;code&gt;[[Cool Websites from Friends]]&lt;&#x2F;code&gt;, for example.
+To follow the link hover over the link in normal mode and press the &lt;code&gt;enter&lt;&#x2F;code&gt; key.
+This will take you to the &lt;code&gt;Cool Websites from Friends&lt;&#x2F;code&gt; page, which is just another
+file in your file system.
+(The extension of the file depends on your settings. It can be a &lt;code&gt;.md&lt;&#x2F;code&gt; markdown file if you like.)
+You can write text in the file and save the file to create it if it does not exist yet.
+To go back to the first page, you can do so by pressing the &lt;code&gt;backspace&lt;&#x2F;code&gt; key.&lt;&#x2F;p&gt;
+
+
+
+
+
+
+&lt;div class=&quot;character-note character-pineapple character-comment character-right&quot;&gt;
+    &lt;div class=&quot;character-avatar&quot;&gt;
+        
+            &lt;img src=&quot;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;images&#x2F;characters&#x2F;pineapple.png&quot;
+                alt=&quot;pineapple&quot;
+                width=&quot;80&quot;
+                height=&quot;80&quot; &#x2F;&gt;   
+        
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;character-content&quot;&gt;
+        &lt;div class=&quot;character-bubble&quot;&gt;
+            &lt;p&gt;You can also use markdown links,
+such as &lt;code&gt;[Cool Websites](.&#x2F;cool-websites.md)&lt;&#x2F;code&gt;, and
+follow the links by pressing &lt;code&gt;enter&lt;&#x2F;code&gt; over them in normal mode&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;This is the most basic functionality of VimWiki, but it is quite powerful when
+coupled with Vim controls.
+You can quickly travel between sites, edit them and move information between them without touching
+your mouse.
+From my experience, this makes for a comfortable and efficient experience when writing notes
+in meetings for example.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;having-multiple-wikis&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#having-multiple-wikis&quot; aria-label=&quot;Anchor link for: having-multiple-wikis&quot;&gt;Having Multiple Wikis&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Let&#x27;s say we want to have two separate Wikis:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;A personal private wiki&lt;&#x2F;li&gt;
+&lt;li&gt;A work-related wiki that will be shared with colleagues (e.g. via Dropbox)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We would like the two wikis to be separated and to live in different files.
+For example, the personal wiki could be in our local &lt;code&gt;\Documents&lt;&#x2F;code&gt; folder and the work wiki
+can be in a shared Dropbox (which can be accessed as a folder on the computer).&lt;&#x2F;p&gt;
+&lt;p&gt;To still make use of the speed of VimWiki we can configure VimWiki with two wikis.
+To do this, modify the &lt;code&gt;vimwiki.lua&lt;&#x2F;code&gt; file:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;lua&quot; class=&quot;language-lua z-code&quot;&gt;&lt;code class=&quot;language-lua&quot; data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-keyword z-control z-return z-lua&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;  &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;vimwiki&#x2F;vimwiki&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;event&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;BufEnter *.md&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;keys&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&amp;lt;leader&amp;gt;ww&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&amp;lt;leader&amp;gt;wt&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-entity z-name z-function z-lua&quot;&gt;init&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-lua&quot;&gt;function&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-lua&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-lua&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;    &lt;span class=&quot;z-variable z-other z-lua&quot;&gt;vim&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-lua&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-property z-lua&quot;&gt;g&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-lua&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-property z-lua&quot;&gt;vimwiki_list&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-lua&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;      &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;span class=&quot;z-comment z-line z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-lua&quot;&gt;--&lt;&#x2F;span&gt; [[ Personal Wiki ]]
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Personal Wiki&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;path&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&#x2F;path&#x2F;to&#x2F;personal&#x2F;wiki1&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;syntax&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;markdown&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;ext&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;.md&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;index&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;README&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;      &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;      &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;span class=&quot;z-comment z-line z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-lua&quot;&gt;--&lt;&#x2F;span&gt; [[ Work Wiki ]]
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Work Wiki&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;path&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&#x2F;path&#x2F;to&#x2F;work&#x2F;wiki2&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;syntax&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;markdown&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;ext&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;.md&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-lua&quot;&gt;index&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;SUMMARY&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;       &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;    &lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;    &lt;span class=&quot;z-comment z-line z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-lua&quot;&gt;--&lt;&#x2F;span&gt; The following is needed to force vimwiki use markdown files
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;    &lt;span class=&quot;z-variable z-other z-lua&quot;&gt;vim&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-lua&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-property z-lua&quot;&gt;g&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-lua&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-property z-lua&quot;&gt;vimwiki_ext2syntax&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-lua&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-lua&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-meta z-brackets z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-lua&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;.md&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-lua&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-single z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;markdown&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-key z-lua&quot;&gt;&lt;span class=&quot;z-meta z-brackets z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-lua&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;.markdown&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-lua&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-lua&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt; &lt;span class=&quot;z-string z-quoted z-single z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;markdown&lt;span class=&quot;z-punctuation z-definition z-string z-end z-lua&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; 
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-value z-lua&quot;&gt;&lt;span class=&quot;z-meta z-function z-lua&quot;&gt;&lt;span class=&quot;z-meta z-block z-lua&quot;&gt;  &lt;span class=&quot;z-keyword z-control z-end z-lua&quot;&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-field z-lua&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-lua&quot;&gt;&lt;span class=&quot;z-meta z-mapping z-lua&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-lua&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now when you press &lt;code&gt;&amp;lt;leader&amp;gt;ww&lt;&#x2F;code&gt;, you are taken to the first wiki
+in &lt;code&gt;vimwiki_list&lt;&#x2F;code&gt;, which is the personal wiki.
+To access other wikis press &lt;code&gt;&amp;lt;leader&amp;gt;ws&lt;&#x2F;code&gt;, and a menu opens with the available wikis.
+With the menu open, type &lt;code&gt;2&lt;&#x2F;code&gt; and then press &lt;code&gt;enter&lt;&#x2F;code&gt; to go to the work wiki.&lt;&#x2F;p&gt;
+&lt;p&gt;It is also possible to have inter-wiki links by typing &lt;code&gt;[[wn.&amp;lt;Wiki Name&amp;gt;:&amp;lt;Page Name In Wiki&amp;gt;]]&lt;&#x2F;code&gt;.
+For example, to link to the &lt;code&gt;SUMMARY.md&lt;&#x2F;code&gt; index page in the &lt;code&gt;Work Wiki&lt;&#x2F;code&gt; from the personal wiki, just
+type &lt;code&gt;[[wn.Work Wiki:SUMMARY]]&lt;&#x2F;code&gt; on any page in the personal wiki.&lt;&#x2F;p&gt;
+&lt;p&gt;Now you can quickly switch between the personal and work wikis with a few button presses all without touching the mouse!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;learning-more&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#learning-more&quot; aria-label=&quot;Anchor link for: learning-more&quot;&gt;Learning more&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;There are also many other features of VimWiki that make it useful, such as searching for text in a Wiki.&lt;&#x2F;p&gt;
+&lt;p&gt;If you would like to learn more about VimWiki, I can recommend the well-written documentation, which you can access via the command &lt;code&gt;:h vimwiki&lt;&#x2F;code&gt;.
+Interestingly, using this setup I can only access the VimWiki documentation after I started
+VimWiki in NeoVim, so keep this in mind if you are having issues.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope this guide was helpful to you. Enjoy using VimWiki!&lt;&#x2F;p&gt;
+&lt;p&gt;If you decide to cite this post, please include the following information.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bibtex&quot; class=&quot;language-bibtex z-code&quot;&gt;&lt;code class=&quot;language-bibtex&quot; data-lang=&quot;bibtex&quot;&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-keyword z-other z-entry-type z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-keyword z-bibtex&quot;&gt;@&lt;&#x2F;span&gt;misc&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-entry-key z-bibtex&quot;&gt;2025-vsteinborn&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;author&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;Victor Steinborn&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;title&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;Your Personal Library - How to Use Multiple Wikis With VimWiki in NeoVim&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;year&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;2025&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;    &lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-key z-bibtex&quot;&gt;url&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-bibtex&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-bibtex&quot;&gt;{&lt;&#x2F;span&gt;https:&#x2F;&#x2F;vsteinborn.github.io&#x2F;posts&#x2F;personal-wiki&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-entry z-braces z-bibtex&quot;&gt;&lt;span class=&quot;z-meta z-key-assignment z-bibtex&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-entry z-end z-bibtex&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>C-Breakout</title>
+        <published>2025-10-01T00:00:00+00:00</published>
+        <updated>2025-10-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/cbreakout/"/>
+        <id>https://vsteinborn.github.io/projects/cbreakout/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/cbreakout/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Introduction to Responsible AI</title>
+        <published>2025-09-30T00:00:00+00:00</published>
+        <updated>2025-09-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/raitalk/"/>
+        <id>https://vsteinborn.github.io/professional/raitalk/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/raitalk/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tiny-Mnist-Denoiser</title>
+        <published>2025-06-01T00:00:00+00:00</published>
+        <updated>2025-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/denoiser/"/>
+        <id>https://vsteinborn.github.io/projects/denoiser/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/denoiser/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Stress Propagation Analysis</title>
+        <published>2025-03-01T00:00:00+00:00</published>
+        <updated>2025-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/ansys-limits/"/>
+        <id>https://vsteinborn.github.io/projects/ansys-limits/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/ansys-limits/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Top Responsible AI Papers @ Daiki</title>
+        <published>2024-12-01T00:00:00+00:00</published>
+        <updated>2024-12-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/daiki-article/"/>
+        <id>https://vsteinborn.github.io/professional/daiki-article/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/daiki-article/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Boids Simulation</title>
+        <published>2024-12-01T00:00:00+00:00</published>
+        <updated>2024-12-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/boid-simulation/"/>
+        <id>https://vsteinborn.github.io/projects/boid-simulation/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/boid-simulation/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Docker Jekyll Dev. Environment</title>
+        <published>2024-07-01T00:00:00+00:00</published>
+        <updated>2024-07-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/docker-jekyll/"/>
+        <id>https://vsteinborn.github.io/projects/docker-jekyll/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/docker-jekyll/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Rock Paper Scissors</title>
+        <published>2023-11-18T00:00:00+00:00</published>
+        <updated>2023-11-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/rock-paper-scissors/"/>
+        <id>https://vsteinborn.github.io/projects/rock-paper-scissors/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/rock-paper-scissors/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Simple Dictionaries</title>
+        <published>2023-09-01T00:00:00+00:00</published>
+        <updated>2023-09-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/simpledictionaries/"/>
+        <id>https://vsteinborn.github.io/projects/simpledictionaries/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/simpledictionaries/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Politeness Stereotypes and Attack Vectors: Gender Stereotypes in Japanese and Korean Language Models</title>
+        <published>2023-06-01T00:00:00+00:00</published>
+        <updated>2023-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/politeness-attacks/"/>
+        <id>https://vsteinborn.github.io/professional/politeness-attacks/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/politeness-attacks/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Open Source Contribution - Added Japanese and Korean Support to Python Library</title>
+        <published>2023-02-09T00:00:00+00:00</published>
+        <updated>2023-02-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/foss-jpsupport/"/>
+        <id>https://vsteinborn.github.io/projects/foss-jpsupport/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/foss-jpsupport/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>An Information-Theoretic Approach and Dataset for Probing Gender Stereotypes in Multilingual Masked Language Models</title>
+        <published>2022-06-01T00:00:00+00:00</published>
+        <updated>2022-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/professional/sjsd/"/>
+        <id>https://vsteinborn.github.io/professional/sjsd/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/professional/sjsd/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Jojo GPT2 Bot</title>
+        <published>2022-03-01T00:00:00+00:00</published>
+        <updated>2022-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/jojo-gpt2/"/>
+        <id>https://vsteinborn.github.io/projects/jojo-gpt2/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/jojo-gpt2/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Solar System Simulation</title>
+        <published>2017-03-27T00:00:00+00:00</published>
+        <updated>2017-03-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vsteinborn.github.io/projects/solarsystem/"/>
+        <id>https://vsteinborn.github.io/projects/solarsystem/</id>
+        
+        <content type="html" xml:base="https://vsteinborn.github.io/projects/solarsystem/"></content>
+        
+    </entry>
+</feed>
